@@ -17,7 +17,9 @@ class BudgetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'   => $this->faker->text($maxNbChars = 20),
+            'amount' => $this->faker->numberBetween($min = -999999, $max = 999999),
+            'category'  => $this->faker->text($maxNbChars = 50)
         ];
     }
 }

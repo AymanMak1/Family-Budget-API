@@ -15,7 +15,7 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        //
+        return Budget::all();
     }
 
     /**
@@ -36,7 +36,12 @@ class BudgetController extends Controller
      */
     public function store(StoreBudgetRequest $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'amount' => 'required',
+            'category' => 'nullable'
+        ]);
+        return Budget::create($data);
     }
 
     /**
@@ -47,7 +52,7 @@ class BudgetController extends Controller
      */
     public function show(Budget $budget)
     {
-        //
+        return $budget;
     }
 
     /**
@@ -70,7 +75,14 @@ class BudgetController extends Controller
      */
     public function update(UpdateBudgetRequest $request, Budget $budget)
     {
-        //
+        $validated_data = $request->validate([
+            'title' => 'sometimes|required',
+            'amount' => 'sometimes|required',
+            'category' => 'sometimes|nullable'
+        ]);
+
+        $budget->update($validated_data);
+        return $budget;
     }
 
     /**

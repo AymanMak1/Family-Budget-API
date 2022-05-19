@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('budgets', function (Blueprint $table) {
             $table->id();
+            $table->string('title',55)->unique();
+            $table->integer('amount');
+            $table->string('Category',55)->unique();
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\Budget;
 
 class BudgetSeeder extends Seeder
 {
@@ -14,6 +16,7 @@ class BudgetSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('budgets')->truncate();
+        Budget::factory()->count(12)->create();
     }
 }
