@@ -19,3 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('budgets', BudgetController::class)->except(['edit','create','destroy']);
+
+Route::get('overall', [BudgetController::class, 'getOverallIncomeAndOutcome']);

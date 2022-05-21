@@ -84,7 +84,6 @@ class BudgetController extends Controller
         $budget->update($validated_data);
         return $budget;
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -94,5 +93,15 @@ class BudgetController extends Controller
     public function destroy(Budget $budget)
     {
         //
+    }
+
+    public function getOverallIncomeAndOutcome(){
+        $overallIncome = Budget::where('amount', '>=', 0)->sum('amount');
+        $overallOutcome = Budget::where('amount', '<', 0)->sum('amount');
+        $overall = [
+            'overallIncome'=> $overallIncome,
+            'overallOutcome' => $overallOutcome
+        ];
+        return $overall;
     }
 }
