@@ -99,8 +99,8 @@ class BudgetController extends Controller
         $overallIncome = Budget::where('amount', '>=', 0)->sum('amount');
         $overallOutcome = Budget::where('amount', '<', 0)->sum('amount');
         $overall = [
-            'overallIncome'=> $overallIncome,
-            'overallOutcome' => $overallOutcome
+            'income' => $overallIncome,
+            'outcome'=> $overallOutcome
         ];
         return $overall;
     }
